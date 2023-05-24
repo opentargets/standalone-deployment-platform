@@ -3,5 +3,7 @@
 # Compute folders
 release
 deployment
+# Active profile
+config_profile.sh
 # Temporary files
 tmp
