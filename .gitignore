@@ -1,0 +1,7 @@
+# Makefile external environment from .env file
+.env
+# Compute folders
+release
+deployment
+# Temporary files
+tmp
