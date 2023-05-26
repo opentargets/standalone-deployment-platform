@@ -77,15 +77,15 @@ deploy_webapp: .env release deployment ## Deploy the Open Targets Platform Webap
 deploy: release deployment deploy_clickhouse deploy_elastic_search deploy_webapp ## [TODO] Deploy an Open Targets Platform Release, according to the active configuration profile
 	@echo "[OTOPS] Deploying an Open Targets Platform Release"
 
-clean_deploy_clickhouse: ## Clean the ClickHouse deployment
+clean_clickhouse: ## Clean the ClickHouse deployment
 	@echo "[OTOPS] Cleaning ClickHouse deployment at '${OTOPS_PATH_DEPLOYMENT_CLICKHOUSE}'"
 	@rm -rf ${OTOPS_PATH_DEPLOYMENT_CLICKHOUSE}
 
-clean_deploy_elastic_search: ## Clean the Elastic Search deployment
+clean_elastic_search: ## Clean the Elastic Search deployment
 	@echo "[OTOPS] Cleaning Elastic Search deployment at '${OTOPS_PATH_DEPLOYMENT_ELASTIC_SEARCH}'"
 	@rm -rf ${OTOPS_PATH_DEPLOYMENT_ELASTIC_SEARCH}
 
-clean_deploy_webapp: ## Clean the Open Targets Platform Webapp deployment
+clean_webapp: ## Clean the Open Targets Platform Webapp deployment
 	@echo "[OTOPS] Cleaning Open Targets Platform Webapp deployment at '${OTOPS_PATH_DEPLOYMENT_WEBAPP}'"
 	@rm -rf ${OTOPS_PATH_DEPLOYMENT_WEBAPP}
 
@@ -104,5 +104,5 @@ platform_down: ## Tear down an Open Targets Platform deployment
 clean: clean_profile clean_deployments ## Clean the active configuration profile and all deployments stores
 	@echo "[OTOPS] Cleaning the active configuration profile and all deployments stores"
 
-.PHONY: help set_profile clean clean_profile summary_environment deploy_clickhouse deploy_elastic_search deploy release deploy_webapp deploy clean_deploy_clickhouse clean_deploy_elastic_search clean_deploy_webapp clean_deployments platform_up platform_down
+.PHONY: help set_profile clean clean_profile summary_environment deploy_clickhouse deploy_elastic_search deploy release deploy_webapp deploy clean_clickhouse clean_elastic_search clean_webapp clean_deployments platform_up platform_down
 
