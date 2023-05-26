@@ -38,6 +38,6 @@ fi
 logi "Uncompressing Web App release artifact '${otops_path_webapp_source_bundle}' into Web App deployment folder '${otops_deployment_path_webapp_root}'"
 tar -xzf "${otops_path_webapp_source_bundle}" -C "${otops_deployment_path_webapp_root}"
 # Attach the web app static context under 'data' folder in the web app deployment folder
-logi "Attaching Web App static context under 'data' folder in the Web App deployment folder '${otops_deployment_path_webapp}'"
+logi "Attaching Web App static context under 'data' folder in the Web App deployment folder '${otops_deployment_path_webapp_root}'"
 cp -r "${otops_deployment_path_webapp_static_data_context}/*" "${otops_provisioner_webapp_path_static_data_context}"
 logi "[Web App Provisioner] Done"
