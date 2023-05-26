@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   api:
-    image: ${API_DOCKER_IMAGE_NAME}:${API_DOCKER_IMAGE_TAG}
+    image: ${OTOPS_PROFILE_API_DOCKER_IMAGE_NAME}:${OTOPS_PROFILE_API_DOCKER_IMAGE_TAG}
     container_name: ot-api
     ports:
       - 8080:8080
@@ -19,7 +19,7 @@ services:
       - ot-platform
 
   clickhouse:
-    image: ${CLICKHOUSE_DOCKER_IMAGE_NAME}:${CLICKHOUSE_DOCKER_IMAGE_TAG}
+    image: ${OTOPS_PROFILE_CLICKHOUSE_DOCKER_IMAGE_NAME}:${OTOPS_PROFILE_CLICKHOUSE_DOCKER_IMAGE_TAG}
     container_name: ot-ch
     ports:
       - 9000:9000
