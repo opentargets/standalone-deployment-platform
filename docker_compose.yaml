@@ -49,7 +49,7 @@ services:
       - "bootstrap.memory_lock=true"
       - "search.max_open_scroll_context=5000"
     volumes:
-      - "${docker_volume_name_es}:/usr/share/elasticsearch/data"
+      - "esdata:/usr/share/elasticsearch/data"
     ulimits:
       memlock: -1
       nofile: 65536
@@ -68,3 +68,11 @@ services:
 
 networks:
   ot-platform:
+
+volumes:
+  esdata:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: "${OTOPS_PATH_DEPLOYMENT_ELASTIC_SEARCH}"
