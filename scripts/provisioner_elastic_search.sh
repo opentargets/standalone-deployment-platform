@@ -9,8 +9,8 @@ source "${SCRIPTDIR}/config.sh"
 # Main
 # Check and wipe existing elastic search data volume
 if [ -d "${otops_deployment_path_elastic_search_volume}" ]; then
-    logw "WIPING OUT Existing Elastic Search data volume at '${otops_deployment_path_elastic_search_volume}'"
-    rm -rf "${otops_deployment_path_elastic_search_volume}/*"
+    logw "ALREADY EXISTING Elastic Search deployment at '${otops_deployment_path_elastic_search_volume}', SKIP PROVISIONING"
+    exit 0
 fi
 
 # Check-create elastic search data volume deployment folder

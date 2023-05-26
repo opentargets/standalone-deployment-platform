@@ -18,8 +18,8 @@ otops_provisioner_webapp_path_static_data_context="${otops_deployment_path_webap
 logi "Provisioning Web App"
 # Check if the webapp deployment folder exists
 if [ -d "${otops_deployment_path_webapp_root}" ]; then
-    logw "WIPING OUT Existing Web App deployment folder at '${otops_deployment_path_webapp_root}'"
-    rm -rf "${otops_deployment_path_webapp_root}/*"
+    logw "ALREADY EXISTING Web App deployment at '${otops_deployment_path_webapp_root}', SKIP PROVISIONING"
+    exit 0
 fi
 
 # Check create webapp deployment folder

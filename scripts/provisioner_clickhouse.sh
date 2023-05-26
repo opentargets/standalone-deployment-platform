@@ -9,8 +9,8 @@ source "${SCRIPTDIR}/config.sh"
 logi "Provisioning Clickhouse"
 # Check if the clickhouse data volume exists
 if [ -d "${otops_deployment_path_clickhouse_volume}" ]; then
-    logw "WIPING OUT Existing Clickhouse data volume at '${otops_deployment_path_clickhouse_volume}'"
-    rm -rf "${otops_deployment_path_clickhouse_volume}/*"
+    logw "ALREADY EXISTING Clickhouse deployment at '${otops_deployment_path_clickhouse_volume}', SKIP PROVISIONING"
+    exit 0
 fi
 
 # Check create clickhouse data volume deployment folder
