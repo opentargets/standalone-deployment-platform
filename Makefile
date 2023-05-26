@@ -70,15 +70,39 @@ deploy_elastic_search: release deployment ## Deploy Elastic Search
 	@echo "[OTOPS] Provisioning Elastic Search data store"
 	@cd $(shell dirname ${OTOPS_PROVISIONER_ELASTIC_SEARCH}) && ./$(shell basename ${OTOPS_PROVISIONER_ELASTIC_SEARCH})
 
-deploy_webapp: release deployment ## Deploy the Open Targets Platform Webapp
+deploy_webapp: .env release deployment ## Deploy the Open Targets Platform Webapp
 	@echo "[OTOPS] Provisioning Open Targets Platform Webapp"
 	@cd $(shell dirname ${OTOPS_PROVISIONER_WEBAPP}) && ./$(shell basename ${OTOPS_PROVISIONER_WEBAPP})
 
 deploy: release deployment deploy_clickhouse deploy_elastic_search deploy_webapp ## [TODO] Deploy an Open Targets Platform Release, according to the active configuration profile
 	@echo "[OTOPS] Deploying an Open Targets Platform Release"
 
-teardown: ## [TODO] Tear down an Open Targets Platform deployment
-	@echo "[OTOPS] Tearing down an Open Targets Platform deployment"
+clean_deploy_clickhouse: ## Clean the ClickHouse deployment
+	@echo "[OTOPS] Cleaning ClickHouse deployment at '${OTOPS_PATH_DEPLOYMENT_CLICKHOUSE}'"
+	@rm -rf ${OTOPS_PATH_DEPLOYMENT_CLICKHOUSE}
 
-.PHONY: help set_profile clean_profile summary_environment deploy_clickhouse deploy_elastic_search deploy release teardown
+clean_deploy_elastic_search: ## Clean the Elastic Search deployment
+	@echo "[OTOPS] Cleaning Elastic Search deployment at '${OTOPS_PATH_DEPLOYMENT_ELASTIC_SEARCH}'"
+	@rm -rf ${OTOPS_PATH_DEPLOYMENT_ELASTIC_SEARCH}
+
+clean_deploy_webapp: ## Clean the Open Targets Platform Webapp deployment
+	@echo "[OTOPS] Cleaning Open Targets Platform Webapp deployment at '${OTOPS_PATH_DEPLOYMENT_WEBAPP}'"
+	@rm -rf ${OTOPS_PATH_DEPLOYMENT_WEBAPP}
+
+clean_deployments: ## Clean all deployments stores
+	@echo "[OTOPS] Cleaning all deployments stores"
+	@rm -rf ${OTOPS_PATH_DEPLOYMENT}
+
+platform_up: ## Bring up an Open Targets Platform deployment
+	@echo "[OTOPS] Bringing up an Open Targets Platform deployment"
+	docker-compose -f docker-compose.yml up -d
+
+platform_down: ## Tear down an Open Targets Platform deployment
+	@echo "[OTOPS] Tearing down an Open Targets Platform deployment"
+	docker-compose -f docker-compose.yml down
+
+clean: clean_profile clean_deployments ## Clean the active configuration profile and all deployments stores
+	@echo "[OTOPS] Cleaning the active configuration profile and all deployments stores"
+
+.PHONY: help set_profile clean clean_profile summary_environment deploy_clickhouse deploy_elastic_search deploy release deploy_webapp deploy clean_deploy_clickhouse clean_deploy_elastic_search clean_deploy_webapp clean_deployments platform_up platform_down
 
