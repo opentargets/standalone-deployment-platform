@@ -18,6 +18,7 @@ export otops_deployment_path_elastic_search_data="${otops_path_elastic_search_vo
 export otops_docker_elastic_search_volume="esdata"
 # Web App
 export otops_path_webapp_source_bundle="${OTOPS_PATH_RELEASE}/webapp.tgz"
+export otops_path_webapp_source_static_data_context="${OTOPS_PATH_RELEASE}/webapp_static_context"
 export otops_deployment_path_webapp_root="${OTOPS_PATH_DEPLOYMENT}/webapp"
 
 # Helper functions
