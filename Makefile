@@ -93,7 +93,7 @@ clean_deployments: ## Clean all deployments stores
 	@echo "[OTOPS] Cleaning all deployments stores"
 	@rm -rf ${OTOPS_PATH_DEPLOYMENT}
 
-platform_up: ## Bring up an Open Targets Platform deployment
+platform_up: deploy ## Bring up an Open Targets Platform deployment
 	@echo "[OTOPS] Bringing up an Open Targets Platform deployment"
 	docker-compose -f docker-compose.yml up
 
