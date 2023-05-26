@@ -75,4 +75,4 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: "${OTOPS_PATH_DEPLOYMENT_ELASTIC_SEARCH}"
+      device: "${OTOPS_PATH_DEPLOYMENT_ELASTIC_SEARCH}/data"
