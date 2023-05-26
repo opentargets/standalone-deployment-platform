@@ -95,7 +95,7 @@ clean_deployments: ## Clean all deployments stores
 
 platform_up: ## Bring up an Open Targets Platform deployment
 	@echo "[OTOPS] Bringing up an Open Targets Platform deployment"
-	docker-compose -f docker-compose.yml up -d
+	docker-compose -f docker-compose.yml up
 
 platform_down: ## Tear down an Open Targets Platform deployment
 	@echo "[OTOPS] Tearing down an Open Targets Platform deployment"
