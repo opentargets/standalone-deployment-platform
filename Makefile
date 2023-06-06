@@ -74,7 +74,7 @@ deploy_webapp: .env release deployment ## Deploy the Open Targets Platform Webap
 	@echo "[OTOPS] Provisioning Open Targets Platform Webapp"
 	@cd $(shell dirname ${OTOPS_PROVISIONER_WEBAPP}) && ./$(shell basename ${OTOPS_PROVISIONER_WEBAPP})
 
-deploy: release deployment deploy_clickhouse deploy_elastic_search deploy_webapp ## [TODO] Deploy an Open Targets Platform Release, according to the active configuration profile
+deploy: release deployment deploy_clickhouse deploy_elastic_search deploy_webapp ## Deploy an Open Targets Platform Release, according to the active configuration profile
 	@echo "[OTOPS] Deploying an Open Targets Platform Release"
 
 clean_clickhouse: ## Clean the ClickHouse deployment
@@ -104,5 +104,5 @@ platform_down: ## Tear down an Open Targets Platform deployment
 clean: clean_profile clean_deployments ## Clean the active configuration profile and all deployments stores
 	@echo "[OTOPS] Cleaning the active configuration profile and all deployments stores"
 
-.PHONY: help set_profile clean clean_profile summary_environment deploy_clickhouse deploy_elastic_search deploy release deploy_webapp deploy clean_clickhouse clean_elastic_search clean_webapp clean_deployments platform_up platform_down
+.PHONY: .env help set_profile clean clean_profile summary_environment deploy_clickhouse deploy_elastic_search deploy release deploy_webapp deploy clean_clickhouse clean_elastic_search clean_webapp clean_deployments platform_up platform_down
 
