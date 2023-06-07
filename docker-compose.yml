@@ -6,6 +6,9 @@ services:
     container_name: ot-api
     ports:
       - "8090:8080"
+    depends_on:
+      - clickhouse
+      - elasticsearch
     environment:
       SLICK_CLICKHOUSE_URL: "jdbc:clickhouse://clickhouse:8123"
       ELASTICSEARCH_HOST: "elasticsearch"
