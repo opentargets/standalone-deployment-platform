@@ -51,7 +51,7 @@ services:
       - "discovery.seed_hosts=[]"
       - "bootstrap.memory_lock=true"
       - "search.max_open_scroll_context=5000"
-      - "ES_JAVA_OPTS=-Xms1g -Xmx40g"
+      - "ES_JAVA_OPTS=-Xms32g -Xmx32g -Xlog:all=warning:stdout:utctime,level,tags -Xlog:gc=warning:stderr:utctime"
     volumes:
       - "esdata:/usr/share/elasticsearch/data"
     ulimits:
