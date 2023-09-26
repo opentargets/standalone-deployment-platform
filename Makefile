@@ -3,37 +3,21 @@
 
 # Environment variables
 ROOT_DIR_MAKEFILE:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
-OTOPS_PATH_PROFILES:=$(ROOT_DIR_MAKEFILE)/profiles
-OTOPS_PATH_SCRIPTS:=$(ROOT_DIR_MAKEFILE)/scripts
-OTOPS_PATH_RELEASE:=$(ROOT_DIR_MAKEFILE)/release
-OTOPS_PATH_CONFIG:=$(ROOT_DIR_MAKEFILE)/config
-OTOPS_PATH_CONFIG_WEBAPP:=$(OTOPS_PATH_CONFIG)/webapp
-OTOPS_PATH_DEPLOYMENT:=$(ROOT_DIR_MAKEFILE)/deployment
-OTOPS_PATH_DEPLOYMENT_CLICKHOUSE:=$(OTOPS_PATH_DEPLOYMENT)/clickhouse
-OTOPS_PATH_DEPLOYMENT_ELASTIC_SEARCH:=$(OTOPS_PATH_DEPLOYMENT)/elastic_search
-OTOPS_PATH_DEPLOYMENT_WEBAPP:=$(OTOPS_PATH_DEPLOYMENT)/webapp
-OTOPS_ACTIVE_PROFILE:=config_profile.sh
-OTOPS_FLAG_DEPLOYED:=.deployed
-OTOPS_PROVISIONER_CLICKHOUSE:=$(OTOPS_PATH_SCRIPTS)/provisioner_clickhouse.sh
-OTOPS_PROVISIONER_ELASTIC_SEARCH:=$(OTOPS_PATH_SCRIPTS)/provisioner_elastic_search.sh
-OTOPS_PROVISIONER_WEBAPP:=$(OTOPS_PATH_SCRIPTS)/provisioner_webapp.sh
+export OTOPS_PATH_PROFILES:=$(ROOT_DIR_MAKEFILE)/profiles
+export OTOPS_PATH_SCRIPTS:=$(ROOT_DIR_MAKEFILE)/scripts
+export OTOPS_PATH_RELEASE:=$(ROOT_DIR_MAKEFILE)/release
+export OTOPS_PATH_CONFIG:=$(ROOT_DIR_MAKEFILE)/config
+export OTOPS_PATH_CONFIG_WEBAPP:=$(OTOPS_PATH_CONFIG)/webapp
+export OTOPS_PATH_DEPLOYMENT:=$(ROOT_DIR_MAKEFILE)/deployment
+export OTOPS_PATH_DEPLOYMENT_CLICKHOUSE:=$(OTOPS_PATH_DEPLOYMENT)/clickhouse
+export OTOPS_PATH_DEPLOYMENT_ELASTIC_SEARCH:=$(OTOPS_PATH_DEPLOYMENT)/elastic_search
+export OTOPS_PATH_DEPLOYMENT_WEBAPP:=$(OTOPS_PATH_DEPLOYMENT)/webapp
+export OTOPS_ACTIVE_PROFILE:=config_profile.sh
+export OTOPS_FLAG_DEPLOYED:=.deployed
+export OTOPS_PROVISIONER_CLICKHOUSE:=$(OTOPS_PATH_SCRIPTS)/provisioner_clickhouse.sh
+export OTOPS_PROVISIONER_ELASTIC_SEARCH:=$(OTOPS_PATH_SCRIPTS)/provisioner_elastic_search.sh
+export OTOPS_PROVISIONER_WEBAPP:=$(OTOPS_PATH_SCRIPTS)/provisioner_webapp.sh
 
-export OTOPS_PATH_PROFILES
-export OTOPS_PATH_SCRIPTS
-export OTOPS_PATH_RELEASE
-export OTOPS_PATH_CONFIG
-export OTOPS_PATH_CONFIG_WEBAPP
-export OTOPS_PATH_DEPLOYMENT
-export OTOPS_PATH_DEPLOYMENT_CLICKHOUSE
-export OTOPS_PATH_DEPLOYMENT_ELASTIC_SEARCH
-export OTOPS_PATH_DEPLOYMENT_WEBAPP
-export OTOPS_ACTIVE_PROFILE
-export OTOPS_FLAG_DEPLOYED
-export OTOPS_PROVISIONER_CLICKHOUSE
-export OTOPS_PROVISIONER_ELASTIC_SEARCH
-export OTOPS_PROVISIONER_WEBAPP
-
-include .env
 
 # Targets
 help: ## Show this help message
@@ -53,6 +37,7 @@ clean_profile: ## Clean the active configuration profile
 
 summary_environment: .env ## Print a summary of the configuration environment
 	@echo "[OTOPS] Summary of the configuration environment"
+	$(eval include .env)
 	@env | grep -E '^(OTOPS_)' | sort
 
 release: ## [TODO] Collect all the artifacts that make up an Open Targets Platform Release, according to the active configuration profile
@@ -72,6 +57,7 @@ deploy_elastic_search: release deployment ## Deploy Elastic Search
 
 deploy_webapp: .env release deployment ## Deploy the Open Targets Platform Webapp
 	@echo "[OTOPS] Provisioning Open Targets Platform Webapp"
+	$(eval include .env)	
 	@cd $(shell dirname ${OTOPS_PROVISIONER_WEBAPP}) && ./$(shell basename ${OTOPS_PROVISIONER_WEBAPP})
 
 deploy: release deployment deploy_clickhouse deploy_elastic_search deploy_webapp ## Deploy an Open Targets Platform Release, according to the active configuration profile
