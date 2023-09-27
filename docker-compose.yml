@@ -28,9 +28,9 @@ services:
       - "9000:9000"
       - "8123:8123"
     volumes:
-      - "${OTOPS_PATH_DEPLOYMENT_CLICKHOUSE}/config.d:/etc/clickhouse-server/config.d"
-      - "${OTOPS_PATH_DEPLOYMENT_CLICKHOUSE}/users.d:/etc/clickhouse-server/users.d"
-      - "${OTOPS_PATH_DEPLOYMENT_CLICKHOUSE}/data:/var/lib/clickhouse"
+      - "chconf:/etc/clickhouse-server/config.d"
+      - "chusers:/etc/clickhouse-server/users.d"
+      - "chdata:/var/lib/clickhouse"
     ulimits:
       nofile: 262144
     networks:
@@ -51,7 +51,6 @@ services:
       - "discovery.seed_hosts=[]"
       - "bootstrap.memory_lock=true"
       - "search.max_open_scroll_context=5000"
-      - "ES_JAVA_OPTS=-Xms32g -Xmx32g -Xlog:all=warning:stdout:utctime,level,tags -Xlog:gc=warning:stderr:utctime"
     volumes:
       - "esdata:/usr/share/elasticsearch/data"
     ulimits:
@@ -65,8 +64,8 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - "${OTOPS_PATH_DEPLOYMENT_WEBAPP}:/srv/site"
-      - "${OTOPS_PATH_CONFIG_WEBAPP}/nginx.conf:/etc/nginx/conf.d/default.conf"
+      - "webapp:/srv/site"
+      - "./config/webapp/nginx.conf:/etc/nginx/conf.d/default.conf"
     networks:
       - ot-platform
 
@@ -80,3 +79,27 @@ volumes:
       o: bind
       type: none
       device: "${OTOPS_PATH_DEPLOYMENT_ELASTIC_SEARCH}/data"
+  chconf:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: "${OTOPS_PATH_DEPLOYMENT_CLICKHOUSE}/config.d"
+  chusers:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: "${OTOPS_PATH_DEPLOYMENT_CLICKHOUSE}/users.d"
+  chdata:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: "${OTOPS_PATH_DEPLOYMENT_CLICKHOUSE}/data"
+  webapp:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: "${OTOPS_PATH_DEPLOYMENT_WEBAPP}"
