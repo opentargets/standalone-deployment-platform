@@ -17,7 +17,9 @@ export OTOPS_FLAG_DEPLOYED:=.deployed
 export OTOPS_PROVISIONER_CLICKHOUSE:=$(OTOPS_PATH_SCRIPTS)/provisioner_clickhouse.sh
 export OTOPS_PROVISIONER_ELASTIC_SEARCH:=$(OTOPS_PATH_SCRIPTS)/provisioner_elastic_search.sh
 export OTOPS_PROVISIONER_WEBAPP:=$(OTOPS_PATH_SCRIPTS)/provisioner_webapp.sh
-
+export OTOPS_COLLECT_DATA_CLICKHOUSE:=$(OTOPS_PATH_SCRIPTS)/collect_data_clickhouse.sh
+export OTOPS_COLLECT_DATA_ELASTIC_SEARCH:=$(OTOPS_PATH_SCRIPTS)/collect_data_elastic_search.sh
+export OTOPS_COLLECT_BUNDLE_WEBAPP:=$(OTOPS_PATH_SCRIPTS)/collect_webapp.sh
 
 # Targets
 help: ## Show this help message
@@ -40,8 +42,27 @@ summary_environment: .env ## Print a summary of the configuration environment
 	$(eval include .env)
 	@env | grep -E '^(OTOPS_)' | sort
 
-release: ## [TODO] Collect all the artifacts that make up an Open Targets Platform Release, according to the active configuration profile
+release: ## Create a release folder for the data images to be stored
+	@echo "[OTOPS] Creating release folder at '${OTOPS_PATH_RELEASE}'"
+	@mkdir -p ${OTOPS_PATH_RELEASE}
+
+download_release: release download_clickhouse download_elastic_search download_webapp ## Collect all the artifacts that make up an Open Targets Platform Release
 	@echo "[OTOPS] Collecting all the artifacts that make up an Open Targets Platform Release"
+
+download_clickhouse: .env release ## Collect the Clickhouse data image
+	@echo "[OTOPS] Collecting Clickhouse data image"
+	$(eval include .env)
+	@cd $(shell dirname ${OTOPS_COLLECT_DATA_CLICKHOUSE}) && ./$(shell basename ${OTOPS_COLLECT_DATA_CLICKHOUSE})
+
+download_elastic_search: .env release ## Collect the Elastic Search data image
+	@echo "[OTOPS] Collecting Elastic Search data image"
+	$(eval include .env)
+	@cd $(shell dirname ${OTOPS_COLLECT_DATA_ELASTIC_SEARCH}) && ./$(shell basename ${OTOPS_COLLECT_DATA_ELASTIC_SEARCH})
+
+download_webapp: .env release # Collect the web app bundle
+	@echo "[OTOPS] Collecting web app bundle"
+	$(eval include .env)
+	@cd $(shell dirname ${OTOPS_COLLECT_BUNDLE_WEBAPP}) && ./$(shell basename ${OTOPS_COLLECT_BUNDLE_WEBAPP})
 
 deployment: ## Create a deployment folder where Open Targets Platform provisioners will deposit their artifacts
 	@echo "[OTOPS] Creating deployment folder at '${OTOPS_PATH_DEPLOYMENT}'"
@@ -90,5 +111,5 @@ platform_down: ## Tear down an Open Targets Platform deployment
 clean: clean_profile clean_deployments ## Clean the active configuration profile and all deployments stores
 	@echo "[OTOPS] Cleaning the active configuration profile and all deployments stores"
 
-.PHONY: .env help set_profile clean clean_profile summary_environment deploy_clickhouse deploy_elastic_search deploy release deploy_webapp deploy clean_clickhouse clean_elastic_search clean_webapp clean_deployments platform_up platform_down
+.PHONY: help download_release download_clickhouse download_elastic_search download_webapp set_profile clean clean_profile summary_environment deploy_clickhouse deploy_elastic_search deploy deploy_webapp deploy clean_clickhouse clean_elastic_search clean_webapp clean_deployments platform_up platform_down
 
