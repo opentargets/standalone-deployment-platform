@@ -68,20 +68,20 @@ deployment: ## Create a deployment folder where Open Targets Platform provisione
 	@echo "[OTOPS] Creating deployment folder at '${OTOPS_PATH_DEPLOYMENT}'"
 	@mkdir -p ${OTOPS_PATH_DEPLOYMENT}
 
-deploy_clickhouse: download_clickhouse deployment ## Deploy ClickHouse
+deploy_clickhouse: deployment ## Deploy ClickHouse
 	@echo "[OTOPS] Provisioning Clickhouse data store"
 	@cd $(shell dirname ${OTOPS_PROVISIONER_CLICKHOUSE}) && ./$(shell basename ${OTOPS_PROVISIONER_CLICKHOUSE})
 
-deploy_elastic_search: download_elastic_search deployment ## Deploy Elastic Search
+deploy_elastic_search: deployment ## Deploy Elastic Search
 	@echo "[OTOPS] Provisioning Elastic Search data store"
 	@cd $(shell dirname ${OTOPS_PROVISIONER_ELASTIC_SEARCH}) && ./$(shell basename ${OTOPS_PROVISIONER_ELASTIC_SEARCH})
 
-deploy_webapp: .env download_webapp deployment ## Deploy the Open Targets Platform Webapp
+deploy_webapp: .env deployment ## Deploy the Open Targets Platform Webapp
 	@echo "[OTOPS] Provisioning Open Targets Platform Webapp"
 	$(eval include .env)	
 	@cd $(shell dirname ${OTOPS_PROVISIONER_WEBAPP}) && ./$(shell basename ${OTOPS_PROVISIONER_WEBAPP})
 
-deploy: download_release deployment deploy_clickhouse deploy_elastic_search deploy_webapp ## Deploy an Open Targets Platform Release, according to the active configuration profile
+deploy: deployment deploy_clickhouse deploy_elastic_search deploy_webapp ## Deploy an Open Targets Platform Release, according to the active configuration profile
 	@echo "[OTOPS] Deploying an Open Targets Platform Release"
 
 clean_clickhouse: ## Clean the ClickHouse deployment
