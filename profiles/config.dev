@@ -4,7 +4,7 @@ export OTOPS_PROFILE_DATA_RELEASE=23.06
 # -- Clickhouse -- #
 export OTOPS_PROFILE_CLICKHOUSE_DOCKER_IMAGE_NAME=clickhouse/clickhouse-server
 export OTOPS_PROFILE_CLICKHOUSE_DOCKER_IMAGE_TAG=23.3.1.2823
-export OTOPS_PROFILE_CLICKHOUSE_DATA_SOURCE="https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/${OTOPS_PROFILE_DATA_RELEASE}/input/manifest.json"
+export OTOPS_PROFILE_CLICKHOUSE_DATA_SOURCE="https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/${OTOPS_PROFILE_DATA_RELEASE}/disk_images/clickhouse.tgz"
 
 # -- Elastic Search -- #
 export OTOPS_PROFILE_ELASTIC_SEARCH_DOCKER_IMAGE_NAME=docker.elastic.co/elasticsearch/elasticsearch-oss
