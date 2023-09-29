@@ -20,6 +20,8 @@ export DEVOPS_CONTEXT_PLATFORM_APP_CONFIG_URL_API="'http:\/\/localhost:8090\/api
 export DEVOPS_CONTEXT_PLATFORM_APP_CONFIG_URL_API_BETA="'http:\/\/localhost:8090\/api\/v4\/graphql'"
 export DEVOPS_CONTEXT_PLATFORM_APP_CONFIG_EFO_URL="'\/data\/ontology\/efo_json\/diseases_efo.jsonl'"
 export DEVOPS_CONTEXT_PLATFORM_APP_CONFIG_GOOGLE_TAG_MANAGER_ID="'GTM-WPXWRDV'"
+export DEVOPS_CONTEXT_PLATFORM_APP_CONFIG_OT_AI_API_URL="'http:\/\/localhost:8081'"
+
 
 # Main
 logi "Provisioning Web App"
