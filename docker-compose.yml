@@ -41,18 +41,21 @@ services:
     container_name: ot-es
     ports:
       - "9200:9200"
-      - "9300:9300"
+      - "9300:9600"
     environment:
-      - "path.data=/usr/share/elasticsearch/data"
-      - "path.logs=/usr/share/elasticsearch/logs"
+      - "path.data=/usr/share/opensearch/data"
+      - "path.logs=/usr/share/opensearch/logs"
       - "cluster.name=ot-es-cluster"
       - "network.host=0.0.0.0"
       - "discovery.type=single-node"
       - "discovery.seed_hosts=[]"
       - "bootstrap.memory_lock=true"
       - "search.max_open_scroll_context=5000"
+      - "DISABLE_SECURITY_PLUGIN=true"
+      - "logger.level=DEBUG"
+      - "OPENSEARCH_JAVA_OPTS=-Xms4g -Xmx4g"
     volumes:
-      - "esdata:/usr/share/elasticsearch/data"
+      - "esdata:/usr/share/opensearch/data"
     ulimits:
       memlock: -1
       nofile: 65536
