@@ -116,6 +116,7 @@ clean_webapp_release: ## Clean the Open Targets Platform Webapp release bundle
 
 clean_release: clean_clickhouse_release clean_elastic_search_release clean_webapp_release ## Clean all data images and webapp bundle
 	@echo "[OTOPS] Cleaning all data images and webapp bundle"
+	@rm -rf ${OTOPS_PATH_RELEASE}
 
 platform_up: deploy ## Bring up an Open Targets Platform deployment
 	@echo "[OTOPS] Bringing up an Open Targets Platform deployment"

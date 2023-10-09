@@ -38,17 +38,17 @@ function download_with_gsutil() {
 }
 
 # Args
-mode=$1
-echo $mode
+target=$1
+echo $target
 
 # Main
-if [[ $mode == "webapp" ]]; then
+if [[ $target == "webapp" ]]; then
     source=$OTOPS_PROFILE_WEBAPP_BUNDLE
     destination=$otops_path_webapp_source_bundle
-elif [[ $mode == "clickhouse" ]]; then
+elif [[ $target == "clickhouse" ]]; then
     source=$OTOPS_PROFILE_CLICKHOUSE_DATA_SOURCE 
     destination=$otops_path_clickhouse_source_data_volume
-elif [[ $mode == "elastic" ]]; then
+elif [[ $target == "elastic" ]]; then
     source=$OTOPS_PROFILE_ELASTIC_SEARCH_DATA_SOURCE 
     destination=$otops_path_elastic_search_source_data_volume
 else
