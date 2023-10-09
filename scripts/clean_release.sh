@@ -13,15 +13,15 @@ function remove () {
 }
 
 # Args
-mode=$1
-echo $mode
+target=$1
+echo $target
 
 # Main
-if [[ $mode == "webapp" ]]; then
+if [[ $target == "webapp" ]]; then
     file=$otops_path_webapp_source_bundle
-elif [[ $mode == "clickhouse" ]]; then
+elif [[ $target == "clickhouse" ]]; then
     file=$otops_path_clickhouse_source_data_volume
-elif [[ $mode == "elastic" ]]; then
+elif [[ $target == "elastic" ]]; then
     file=$otops_path_elastic_search_source_data_volume
 else
     loge "Unknown target"
