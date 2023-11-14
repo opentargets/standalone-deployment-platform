@@ -18,6 +18,7 @@ services:
       META_DATA_YEAR: "23"
       META_DATA_MONTH: "6"
       META_DATA_ITERATION: "0"
+      PLATFORM_API_IGNORE_CACHE: "true"
     networks:
       - ot-platform
 
@@ -53,7 +54,7 @@ services:
       - "search.max_open_scroll_context=5000"
       - "DISABLE_SECURITY_PLUGIN=true"
       - "logger.level=DEBUG"
-      - "OPENSEARCH_JAVA_OPTS=-Xms4g -Xmx4g"
+      - "OPENSEARCH_JAVA_OPTS=-Xms2g -Xmx4g"
     volumes:
       - "esdata:/usr/share/opensearch/data"
     ulimits:
