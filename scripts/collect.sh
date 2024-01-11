@@ -34,7 +34,7 @@ function download_with_gsutil() {
     logi "Using gsutil"
     local source="${1}"
     local destination="${2}"
-    gsutil cp $source $destination
+    gsutil -m cp $source $destination
 }
 
 # Args
