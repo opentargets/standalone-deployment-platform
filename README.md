@@ -82,5 +82,6 @@ A general workflow would be:
 2. Set the profile: `make set_profile profile='dev'`
 3. Deploy: `make platform_up`
 4. Make a change to something, then repeat steps 1-3
+5. Remove everything: `make clean`
 
 Completed targets will not be rerun. For instance, if you have already made a deployment and only wish to change the version of the platform API, simply change the version in the config and rerun `make platform_up`. This will apply the changes but not repeat the download of all unchanged resources (which can take a long time).
