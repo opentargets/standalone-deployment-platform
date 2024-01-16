@@ -10,16 +10,16 @@ The application fetches all of the necessary resources and components (below) an
    2. ClickHouse data - archived images are publicly available 
 2. Open Targets software
    1. Web App - bundle is available from [repo](https://github.com/opentargets/ot-ui-apps)
-   2. Platform API - publically available as a docker image on [quay.io](https://quay.io/repository/opentargets/platform-api)
-   3. OpenAI API - publically available as a docker image on [quay.io](https://quay.io/repository/opentargets/ot-ai-api)
+   2. Platform API - publicly available as a docker image on [quay.io](https://quay.io/repository/opentargets/platform-api)
+   3. OpenAI API - publicly available as a docker image on [quay.io](https://quay.io/repository/opentargets/ot-ai-api)
 3. 3rd party software
    1. [OpenSearch](https://opensearch.org/)
    2. [ClickHouse](https://clickhouse.com/)
    3. [NGINX](https://www.nginx.com/)
 
-![platfform-components](otar_standalone.png)
+![platform-components](otar_standalone.png)
 
-## Quickstart
+## Quick start
 ```bash
 # clone the repo
 git clone https://github.com/opentargets/standalone-deployment-platform.git
@@ -82,6 +82,6 @@ A general workflow would be:
 2. Set the profile: `make set_profile profile='dev'`
 3. Deploy: `make platform_up`
 4. Make a change to something, then repeat steps 1-3
-5. Remove everything: `make clean`
+5. Tear down: `make platform_down` or remove everything: `make clean`
 
 Completed targets will not be rerun. For instance, if you have already made a deployment and only wish to change the version of the platform API, simply change the version in the config and rerun `make platform_up`. This will apply the changes but not repeat the download of all unchanged resources (which can take a long time).
