@@ -91,6 +91,8 @@ services:
 
 networks:
   ot-platform:
+    name: ot_platform
+
 
 volumes:
   esdata:
