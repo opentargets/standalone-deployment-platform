@@ -7,8 +7,8 @@ export OTOPS_PROFILE_CLICKHOUSE_DOCKER_IMAGE_TAG=23.3.1.2823
 export OTOPS_PROFILE_CLICKHOUSE_DATA_SOURCE="https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/${OTOPS_PROFILE_DATA_RELEASE}/disk_images/clickhouse.tgz"
 
 # -- Elastic Search -- #
-export OTOPS_PROFILE_ELASTIC_SEARCH_DOCKER_IMAGE_NAME=docker.elastic.co/elasticsearch/elasticsearch-oss
-export OTOPS_PROFILE_ELASTIC_SEARCH_DOCKER_IMAGE_TAG=7.10.2
+export OTOPS_PROFILE_ELASTIC_SEARCH_DOCKER_IMAGE_NAME=opensearchproject/opensearch
+export OTOPS_PROFILE_ELASTIC_SEARCH_DOCKER_IMAGE_TAG=2.10.0
 export OTOPS_PROFILE_ELASTIC_SEARCH_DATA_SOURCE="https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/${OTOPS_PROFILE_DATA_RELEASE}/disk_images/elastic_search.tgz"
 
 # -- API -- #
