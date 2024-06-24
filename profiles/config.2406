@@ -1,5 +1,5 @@
 #!/bin/bash
-export OTOPS_PROFILE_DATA_RELEASE=23.06
+export OTOPS_PROFILE_DATA_RELEASE=24.06
 
 # -- Clickhouse -- #
 export OTOPS_PROFILE_CLICKHOUSE_DOCKER_IMAGE_NAME=clickhouse/clickhouse-server
