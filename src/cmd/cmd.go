@@ -9,8 +9,9 @@ import (
 )
 
 var (
-	unattended bool
-	configFile string
+	unattended     bool
+	configFile     string
+	skipValidation bool
 )
 
 // RootCmd is the root command of the Open Targets Platform deployment tool.
@@ -67,7 +68,7 @@ var localCmd = &cobra.Command{
 	Example: "deploy local",
 	Run: func(_ *cobra.Command, _ []string) {
 		// TODO: Finish local deployment.
-		RunLocal(false, "./etc/defaults-local")
+		RunLocal(false, skipValidation, "./etc/defaults-local")
 	},
 }
 
@@ -115,7 +116,7 @@ values in the configuration file or the defaults. See examples below.
       but overriding the API image tag to 'another'
 `,
 	Run: func(_ *cobra.Command, _ []string) {
-		RunCloud(unattended, configFile)
+		RunCloud(unattended, skipValidation, configFile)
 	},
 }
 
@@ -125,6 +126,7 @@ func init() {
 Cloud Storage URI (gs://bucket/path/to/file). If -c is not
 specified, the tool will use the defaults values found in
 ./etc/defaults-cloud.`)
+	deployCmd.PersistentFlags().BoolVar(&skipValidation, "skip-validation", false, "skip all configuration validation checks")
 
 	RootCmd.AddGroup(&cobra.Group{
 		ID:    "main",
