@@ -154,6 +154,21 @@ func (c *LocalDeploymentConfig) GetDeploymentDir() string {
 	return absDeploymentDir
 }
 
+// ClearValidators removes all validators from the LocalDeploymentConfig settings.
+func (c *LocalDeploymentConfig) ClearValidators() {
+	c.Release.Validator = nil
+	c.ReleaseURL.Validator = nil
+	c.APIImage.Validator = nil
+	c.APITag.Validator = nil
+	c.APIAIImage.Validator = nil
+	c.APIAITag.Validator = nil
+	c.WebAppImage.Validator = nil
+	c.WebAppTag.Validator = nil
+	c.ClickhouseTag.Validator = nil
+	c.OpensearchTag.Validator = nil
+	c.APIAIToken.Validator = nil
+}
+
 // Validate validates all settings in a LocalDeploymentConfig.
 func (c *LocalDeploymentConfig) Validate() error {
 	var errs []error

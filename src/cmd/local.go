@@ -8,7 +8,7 @@ import (
 )
 
 // RunLocal runs the local deployment setup.
-func RunLocal(auto bool, configPath string) {
+func RunLocal(auto bool, skipValidation bool, configPath string) {
 	// 1. Load defaults
 	c, err := config.NewLocalDeploymentConfig(configPath)
 	if err != nil {
@@ -17,6 +17,11 @@ func RunLocal(auto bool, configPath string) {
 
 	// 2. Parse env vars
 	c.ReplaceFromEnv()
+
+	// Clear validators if skip-validation flag is set
+	if skipValidation {
+		c.ClearValidators()
+	}
 
 	// 3. If non-interactive mode, validate the config and exit if there are errors.
 	// Otherwise, present the configuration form.
