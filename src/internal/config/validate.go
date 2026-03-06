@@ -28,6 +28,11 @@ import (
 
 const gcpContextTimeout = 10 * time.Second
 
+// NilValidator is a validator that always returns nil, i.e. it considers all values valid.
+func NilValidator(_ string) error {
+	return nil
+}
+
 // ValidateNotEmpty checks if the provided string is not empty.
 func ValidateNotEmpty(v string) error {
 	if v == "" {

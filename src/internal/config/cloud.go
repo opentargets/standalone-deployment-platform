@@ -247,29 +247,29 @@ func (c *CloudDeploymentConfig) GetDeploymentDir() string {
 
 // ClearValidators removes all validators from the CloudDeploymentConfig settings.
 func (c *CloudDeploymentConfig) ClearValidators() {
-	c.GCPProject.Validator = nil
-	c.GCPRegion.Validator = nil
-	c.GCPZone.Validator = nil
-	c.OpsURI.Validator = nil
-	c.DomainName.Validator = nil
-	c.SubdomainName.Validator = nil
-	c.DaysToLive.Validator = nil
-	c.WebAppFlavor.Validator = nil
-	c.Release.Validator = nil
-	c.SnapshotCH.Validator = nil
-	c.SnapshotOS.Validator = nil
-	c.APIImage.Validator = nil
-	c.APITag.Validator = nil
-	c.APIAIImage.Validator = nil
-	c.APIAITag.Validator = nil
-	c.WebAppImage.Validator = nil
-	c.WebAppTag.Validator = nil
-	c.ClickhouseTag.Validator = nil
-	c.OpensearchTag.Validator = nil
-	c.GCPSecretAIToken.Validator = nil
-	c.GCPCloudDNSZone.Validator = nil
-	c.GCPNetwork.Validator = nil
-	c.GCPServiceAccount.Validator = nil
+	c.GCPProject.Validator = NilValidator
+	c.GCPRegion.Validator = NilValidator
+	c.GCPZone.Validator = NilValidator
+	c.OpsURI.Validator = NilValidator
+	c.DomainName.Validator = NilValidator
+	c.SubdomainName.Validator = NilValidator
+	c.DaysToLive.Validator = NilValidator
+	c.WebAppFlavor.Validator = NilValidator
+	c.Release.Validator = NilValidator
+	c.SnapshotCH.Validator = NilValidator
+	c.SnapshotOS.Validator = NilValidator
+	c.APIImage.Validator = NilValidator
+	c.APITag.Validator = NilValidator
+	c.APIAIImage.Validator = NilValidator
+	c.APIAITag.Validator = NilValidator
+	c.WebAppImage.Validator = NilValidator
+	c.WebAppTag.Validator = NilValidator
+	c.ClickhouseTag.Validator = NilValidator
+	c.OpensearchTag.Validator = NilValidator
+	c.GCPSecretAIToken.Validator = NilValidator
+	c.GCPCloudDNSZone.Validator = NilValidator
+	c.GCPNetwork.Validator = NilValidator
+	c.GCPServiceAccount.Validator = NilValidator
 }
 
 // Validate validates all settings in CloudDeploymentSettings.
