@@ -9,6 +9,9 @@ import (
 
 // RunLocal runs the local deployment setup.
 func RunLocal(auto bool, skipValidation bool, configPath string) {
+	// 0. Ensure required tools are installed
+	housekeeping.EnsureTools()
+
 	// 1. Load defaults
 	c, err := config.NewLocalDeploymentConfig(configPath)
 	if err != nil {

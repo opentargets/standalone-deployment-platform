@@ -11,6 +11,7 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -26,6 +27,17 @@ func EnsureDir(path string) {
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		if err := os.MkdirAll(path, 0755); err != nil {
 			log.Fatalf("error creating deployment directory %s: %v", path, err)
+		}
+	}
+}
+
+// EnsureTools checks if required tools are installed and exits with an error if any are missing.
+func EnsureTools() {
+	requiredTools := []string{"docker", "docker-compose", "pigz"}
+
+	for _, tool := range requiredTools {
+		if _, err := exec.LookPath(tool); err != nil {
+			log.Fatalf("required tool %q not found in PATH or is not executable: %v", tool, err)
 		}
 	}
 }
