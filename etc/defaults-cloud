@@ -14,18 +14,18 @@ TF_VAR_OT_DAYS_TO_LIVE="2"
 OT_WEBAPP_FLAVOR="platform"
 
 # Data versions
-OT_RELEASE="25.09"
-TF_VAR_OT_SNAPSHOT_CH="platform-2509-ch"
-TF_VAR_OT_SNAPSHOT_OS="platform-2509-os"
+OT_RELEASE="25.12"
+TF_VAR_OT_SNAPSHOT_CH="platform-2512-ch"
+TF_VAR_OT_SNAPSHOT_OS="platform-2512-os"
 
 # Software versions
 OT_API_IMAGE="ghcr.io/opentargets/platform-api"
-OT_API_TAG="latest"
+OT_API_TAG="25.4.4"
 OT_API_AI_IMAGE="ghcr.io/opentargets/ot-ai-api"
-OT_API_AI_TAG="latest"
+OT_API_AI_TAG="0.0.13"
 OT_API_AI_TOKEN=""
-OT_WEBAPP_IMAGE="ghcr.io/opentargets/ot-ui-apps/ot-ui-apps"
-OT_WEBAPP_TAG="latest"
+OT_WEBAPP_IMAGE="ghcr.io/opentargets/ot-ui-apps"
+OT_WEBAPP_TAG="0.14.9"
 OT_CLICKHOUSE_TAG="25.6.1.3206"
 OT_OPENSEARCH_TAG="3.1.0"
 
