@@ -59,6 +59,13 @@ func DeployLocal(c *config.LocalDeploymentConfig) {
 			}
 		}()
 		wg.Wait()
+		close(errCh)
+
+		for err := range errCh {
+			if err != nil {
+				log.Fatalf("error during download: %v\n", err)
+			}
+		}
 	}
 	tools.RunWithSpinner("downloading data, this may take a while...", downloadAction)
 
@@ -81,6 +88,13 @@ func DeployLocal(c *config.LocalDeploymentConfig) {
 			}
 		}()
 		wg.Wait()
+		close(errCh)
+
+		for err := range errCh {
+			if err != nil {
+				log.Fatalf("error during extraction: %v\n", err)
+			}
+		}
 	}
 	tools.RunWithSpinner("extracting data, this may take a while...", extractAction)
 
