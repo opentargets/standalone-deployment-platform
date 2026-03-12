@@ -35,6 +35,7 @@ func PrepareDeploymentDir(c config.DeploymentConfig) {
 	localDeploymentFiles := []string{
 		"./etc/compose.yaml",
 		"./etc/Dockerfile-opensearch",
+		"./etc/.dockerignore",
 	}
 
 	cloudDeploymentFiles := []string{
