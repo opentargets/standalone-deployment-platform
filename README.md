@@ -6,8 +6,8 @@ Create your own Open Targets Platform instance hosted locally or in Google Cloud
 
 For the local deployment, you need a machine with at least **4 cores** and **16GB
 of RAM.** About **300GB of hard drive space** is required for installation (as
-of 25.06 release).
-You can after reduce that amount by about 100GB by deleting the `downloads`
+of 25.12 release).
+You can after reduce that amount by about 118GB by deleting the `downloads`
 folder containing the disk image tarballs.
 
 Cloud deployments use a [`n1-standard-4`](https://cloud.google.com/compute/docs/general-purpose-machines#n1_machine_types)
@@ -18,7 +18,8 @@ Regarding software, you will need:
 * [Go](https://go.dev/doc/install), to compile the configurator
 * [Docker](https://docs.docker.com/engine/install/), for local deployments
 * [GCloud CLI](https://cloud.google.com/sdk/docs/install), and
-* [Terraform](https://developer.hashicorp.com/terraform/install) for cloud deployments (this can be installed automatically by the tool)
+* [Terraform](https://developer.hashicorp.com/terraform/install) for cloud deployments (this will be installed automatically by the tool)
+* [pigz](https://zlib.net/pigz/) which you can install with your package manager of choice
 
 ## Build
 
