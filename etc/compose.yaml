@@ -59,6 +59,8 @@ services:
     image: ${OT_API_AI_IMAGE:-quay.io/opentargets/ot-ai-api}:${OT_API_AI_TAG:-latest}
     environment:
       OPENAI_TOKEN_FILE: /run/secrets/openai_token
+      APP_ENV: ${OT_API_AI_ENV:-development}
+      CORS_ORIGINS: http://webapp:8080
     secrets:
       - openai_token
     ports:

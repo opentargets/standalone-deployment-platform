@@ -32,6 +32,7 @@ type CloudDeploymentConfig struct {
 	Release           Setting
 	APIAIImage        Setting
 	APIAITag          Setting
+	APIAIEnv          Setting
 	WebAppImage       Setting
 	WebAppTag         Setting
 	ClickhouseTag     Setting
@@ -165,6 +166,12 @@ func NewCloudDeploymentConfig(configPath string) (*CloudDeploymentConfig, error)
 			Env:         "OT_API_AI_TAG",
 			Value:       env["OT_API_AI_TAG"],
 		},
+		APIAIEnv: Setting{
+			Title:       "AI API environment",
+			Description: "This property define the environment for the AI API. The default value is development.",
+			Env:         "OT_API_AI_ENV",
+			Value:       env["OT_API_AI_ENV"],
+		},
 		WebAppImage: Setting{
 			Title:     "WebApp docker image name",
 			Env:       "OT_WEBAPP_IMAGE",
@@ -262,6 +269,7 @@ func (c *CloudDeploymentConfig) ClearValidators() {
 	c.APITag.Validator = nil
 	c.APIAIImage.Validator = nil
 	c.APIAITag.Validator = nil
+	c.APIAIEnv.Validator = nil
 	c.WebAppImage.Validator = nil
 	c.WebAppTag.Validator = nil
 	c.ClickhouseTag.Validator = nil
@@ -290,6 +298,7 @@ func (c *CloudDeploymentConfig) Validate() error {
 	tools.AppendIfErr(&errs, c.APITag.Validate())
 	tools.AppendIfErr(&errs, c.APIAIImage.Validate())
 	tools.AppendIfErr(&errs, c.APIAITag.Validate())
+	tools.AppendIfErr(&errs, c.APIAIEnv.Validate())
 	tools.AppendIfErr(&errs, c.WebAppImage.Validate())
 	tools.AppendIfErr(&errs, c.WebAppTag.Validate())
 	tools.AppendIfErr(&errs, c.ClickhouseTag.Validate())
@@ -321,6 +330,7 @@ func (c *CloudDeploymentConfig) ReplaceFromEnv() {
 	c.APITag.ReplaceFromEnv()
 	c.APIAIImage.ReplaceFromEnv()
 	c.APIAITag.ReplaceFromEnv()
+	c.APIAIEnv.ReplaceFromEnv()
 	c.WebAppImage.ReplaceFromEnv()
 	c.WebAppTag.ReplaceFromEnv()
 	c.ClickhouseTag.ReplaceFromEnv()
@@ -356,6 +366,7 @@ func (c *CloudDeploymentConfig) ToString() string {
 	sb.WriteString(c.APITag.ToString())
 	sb.WriteString(c.APIAIImage.ToString())
 	sb.WriteString(c.APIAITag.ToString())
+	sb.WriteString(c.APIAIEnv.ToString())
 	sb.WriteString(c.WebAppImage.ToString())
 	sb.WriteString(c.WebAppTag.ToString())
 	sb.WriteString(c.ClickhouseTag.ToString())
@@ -411,6 +422,7 @@ func CloudDeploymentForm(c *CloudDeploymentConfig) *huh.Form {
 			c.APITag.Input(),
 			c.APIAIImage.Input(),
 			c.APIAITag.Input(),
+			c.APIAIEnv.Input(),
 			c.WebAppImage.Input(),
 			c.WebAppTag.Input(),
 			c.ClickhouseTag.Input(),
